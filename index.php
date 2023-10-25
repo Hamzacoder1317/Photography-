@@ -1,3 +1,18 @@
+<?php
+
+require ("shared/config.php");
+
+;
+
+$service_sel = "SELECT * FROM `service`";
+$service_disp = mysqli_query($conn , $service_sel);
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,18 +111,18 @@
         <div class="row album ">
           <div class="col-5 pe-2"><img
               src="https://images.unsplash.com/photo-1557678493-c54624d611fc?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="img-fluid"></div>
+              class="img-fluid shado"></div>
           <div class="col-7 album-img2"> <img
               src="https://images.unsplash.com/photo-1594028235803-abe34abeb671?auto=format&fit=crop&q=80&w=1702&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="img-fluid"></div>
+              class="img-fluid shado"></div>
         </div>
         <div class="row mt-2  ">
           <div class="col-6 pe-2"> <img
               src="https://images.unsplash.com/photo-1611121589696-10e27f469f48?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="img-fluid"></div>
+              class="img-fluid shado"></div>
           <div class="col-6"><img
               src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&q=80&w=1680&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="img-fluid" alt=""></div>
+              class="img-fluid shado" alt=""></div>
         </div>
 
 
@@ -151,7 +166,9 @@
     <div class="card__container swiper">
       <div class="card__content">
         <div class="swiper-wrapper">
-
+<?php  
+while($data = mysqli_fetch_assoc($service_disp)){
+?>
           <article class="card__article swiper-slide">
 
 
@@ -159,16 +176,33 @@
               <span class="material-symbols-outlined fs-1">
                 camera
               </span>
-              <h3 class="card__name">Wedding Photography</h3>
+              <h3 class="card__name"><?PHP  echo $data['service_title'] ;?></h3>
               <p class="card__description">
-                Capture the magic of your special day with our professional wedding photography services, ensuring your
-                memories last a lifetime.
+              <?PHP  echo $data['service_desc']; ?>
               </p>
 
 
             </div>
           </article>
+          <?php
+          }?>
+  <!-- <article class="card__article swiper-slide">
 
+
+<div class="card__data">
+  <span class="material-symbols-outlined fs-1">
+    camera
+  </span>
+  <h3 class="card__name">Wedding Photography</h3>
+  <p class="card__description">
+    Capture the magic of your special day with our professional wedding photography services, ensuring your
+    memories last a lifetime.
+  </p>
+
+
+</div>
+</article> -->
+<!-- 
           <article class="card__article swiper-slide">
 
 
@@ -234,7 +268,7 @@
 
 
             </div>
-          </article>
+          </article> -->
         </div>
       </div>
 

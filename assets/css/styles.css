@@ -447,7 +447,10 @@ section h2{
 .line1 {
   color: #e77e06;
 }
-
+.shado{
+  margin-top: 10px;
+  box-shadow: 1px 1px 10px black;
+}
 /* album end */
 
 
