@@ -70,15 +70,15 @@ $service_disp = mysqli_query($conn , $service_sel);
   </nav>
 
   <div class="container-fluid  overflow-hidden  bg">
-    <div class="social">
+    <!-- <div class="social">
       <ul>
         <li><a href=""><img src="assets/img/face.png" alt=""></a></li>
         <li><a href=""><img src="assets/img/inta.png" alt=""></a></li>
         <li><a href=""><img src="assets/img/twi.png" alt=""></a></li>
       </ul>
-    </div>
+    </div> -->
     <div class="row " id="Home">
-      <div class="col d-flex mt-auto  mb-auto align-items-center " id="text">
+      <div class="col d-flex mt-auto  mb-auto align-items-center " id="text" style="z-index: 3;">
         <div class=" lh-1 text-cont ">
           <p class="fs-5">Hello , my name is
           <p>
@@ -90,8 +90,8 @@ $service_disp = mysqli_query($conn , $service_sel);
           <button type="button" class="btn2">Packages</button>
         </div>
       </div>
-      <div class="col  " id="pic">
-        <img src="assets/img/hamza.png" class="img-fluid1 " style="margin-top: -5rem; ">
+      <div class="col  " id="pic" style="z-index: 3;">
+        <img src="assets/img/javed.png" class="img-fluid1 " style="margin-top: -5rem; ">
 
 
       </div>
@@ -160,128 +160,55 @@ $service_disp = mysqli_query($conn , $service_sel);
     </div>
 
 
+    <div class="parent ">
+
+
+      <?php  
+      while($data = mysqli_fetch_assoc($service_disp)){
+      ?>
 
 
 
-    <div class="card__container swiper">
-      <div class="card__content">
-        <div class="swiper-wrapper">
-<?php  
-while($data = mysqli_fetch_assoc($service_disp)){
-?>
-          <article class="card__article swiper-slide">
+      <div class="card__data">
+        <span class="material-symbols-outlined fs-1">
+          camera
+        </span>
+        <h3 class="card__name">
+          <?PHP  echo $data['service_title'] ;?>
+        </h3>
+        <p class="card__description">
+          <?PHP  echo $data['service_desc']; ?>
+        </p>
 
 
-            <div class="card__data">
-              <span class="material-symbols-outlined fs-1">
-                camera
-              </span>
-              <h3 class="card__name"><?PHP  echo $data['service_title'] ;?></h3>
-              <p class="card__description">
-              <?PHP  echo $data['service_desc']; ?>
-              </p>
-
-
-            </div>
-          </article>
-          <?php
-          }?>
-  <!-- <article class="card__article swiper-slide">
-
-
-<div class="card__data">
-  <span class="material-symbols-outlined fs-1">
-    camera
-  </span>
-  <h3 class="card__name">Wedding Photography</h3>
-  <p class="card__description">
-    Capture the magic of your special day with our professional wedding photography services, ensuring your
-    memories last a lifetime.
-  </p>
-
-
-</div>
-</article> -->
-<!-- 
-          <article class="card__article swiper-slide">
-
-
-            <div class="card__data">
-              <span class="material-symbols-outlined fs-1">
-                camera
-              </span>
-              <h3 class="card__name"> Portrait Photography</h3>
-              <p class="card__description">
-                Unveil your unique style with our artistic portrait photography, creating stunning images that tell your
-                story.
-              </p>
-
-
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-
-
-            <div class="card__data">
-              <span class="material-symbols-outlined fs-1">
-                camera
-              </span>
-              <h3 class="card__name">Event Photography</h3>
-              <p class="card__description">
-                Preserve the essence of your events with our expert photography, capturing the moments that matter most.
-              </p>
-
-
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-
-
-            <div class="card__data">
-              <span class="material-symbols-outlined fs-1">
-                camera
-              </span>
-              <h3 class="card__name">Nature and Photography</h3>
-              <p class="card__description">
-                Experience breathtaking landscapes through our stunning nature and landscape photography".
-              </p>
-
-
-            </div>
-          </article>
-
-          <article class="card__article swiper-slide">
-
-
-            <div class="card__data">
-              <span class="material-symbols-outlined fs-1">
-                camera
-              </span>
-              <h3 class="card__name">Food Photography</h3>
-              <p class="card__description">
-                Satisfy your visual appetite with mouthwatering food photography, perfect for restaurants and food
-                enthusiasts.
-
-              </p>
-
-
-            </div>
-          </article> -->
-        </div>
       </div>
 
-      <div class="swiper-button-next">
-        <i class="ri-arrow-right-s-line"></i>
-      </div>
+      <?PHP
+     }?>
 
-      <div class="swiper-button-prev">
-        <i class="ri-arrow-left-s-line"></i>
-      </div>
 
-      <div class="swiper-pagination"></div>
+      <div class="card__data">
+        <form action="">
+          <span class="material-symbols-outlined fs-1">
+            camera
+          </span>
+          <h3 class="card__name">
+            <input type="text" name="" class="service-title form-control" placeholder="Service-title" id="">
+          </h3>
+          <p class="card__description">
+            <textarea type="text" name="" class="service-desc form-control" placeholder="Service-desc"></textarea>
+          </p>
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+      </div>
     </div>
+
+
+
+
+
+
+
   </section>
 
 

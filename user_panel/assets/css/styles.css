@@ -303,24 +303,27 @@ transform: scaleX(1);
 
 /* clone start*/
 .bg{
-background-image: url('../img/bg.png');
-background-position: cover;
+background-image: url('../img/bg.jpg');
+
 background-attachment: fixed;
 
 position: relative;
+
 }
 
-/* .bg1::before
-{
-position: absolute;
-top: 0;
-left: 0;
-content: '';
-height: 100%;
-width: 100%;
-background: linear-gradient(to right, rgb(0 0 0 / 50%), rgb(0 0 0 / 50%));
+.bg::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle, #00000000, #000000fa);
+
+  z-index: 2;
+  backdrop-filter: blur(4px);
 }
-*/
+
 
 .social{
 position: fixed;
@@ -338,9 +341,10 @@ width: 45px;
 height: auto;
 }
 .img-fluid1 {
-mix-blend-mode:luminosity;
+
 width: 100%;
 height: auto;
+
 }
 
 .name10 {
@@ -351,6 +355,7 @@ font-size: 4rem;
 color: white;
 margin-left: 10rem;
 word-spacing: 6 px;
+
 }
 
 .btn1 {
