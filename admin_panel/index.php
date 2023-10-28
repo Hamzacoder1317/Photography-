@@ -280,7 +280,7 @@ $service_disp = mysqli_query($conn , $service_sel);
               <img src="assets/img/avatar-2.png" class="img-fluid" alt="">
             </div>
             <h3 class="text-center text-light pt-2">Kashan</h3>
-            <p class="text-center fs-6 text-light" style="text-align: justify;">Elevate your online presence with my
+            <p class="text-center fs-6 text-light">Elevate your online presence with my
               expert web development services,</p>
           </div>
         </div>
@@ -290,9 +290,20 @@ $service_disp = mysqli_query($conn , $service_sel);
               <img src="assets/img/avatar-3.png" class="img-fluid" alt="">
             </div>
             <h3 class="text-center text-light pt-2">Abubaker Siddiqui</h3>
-            <p class="text-center fs-6 text-light" style="text-align: justify;">Creating engaging app designs that
+            <p class="text-center fs-6 text-light" >Creating engaging app designs that
               balance beauty </p>
           </div>
+        </div>
+        <div class="Service">
+          <form action="">
+          <div class="content">
+            <div class="round">
+         <input type="file" class="form-control" placeholder="Team-img">
+            </div>
+            <h3 class="text-center text-light pt-2">  <input type="text" name="" class="service-title form-control" placeholder="Team-title" id=""></h3>
+            <p class="text-center fs-6 text-light" > <textarea type="text" name="" class="service-desc form-control" placeholder="Service-desc"></textarea></p>
+          </div>
+          </form>
         </div>
       </div>
     </div>
