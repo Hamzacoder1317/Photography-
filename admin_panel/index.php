@@ -2,13 +2,14 @@
 
 require ("shared/config.php");
 
-;
+
 
 $service_sel = "SELECT * FROM `service`";
 $service_disp = mysqli_query($conn , $service_sel);
 
 
-
+$team_sel = "SELECT * FROM `team`";
+$team_disp = mysqli_query($conn , $team_sel);
 
 ?>
 
@@ -186,22 +187,20 @@ $service_disp = mysqli_query($conn , $service_sel);
       <?PHP
      }?>
 
-
-      <div class="card__data">
-        <form action="">
-          <span class="material-symbols-outlined fs-1">
+<div class="card__data">
+    <form id="cardDataForm" action="">
+        <span class="material-symbols-outlined fs-1">
             camera
-          </span>
-          <h3 class="card__name">
-            <input type="text" name="" class="service-title form-control" placeholder="Service-title" id="">
-          </h3>
-          <p class="card__description">
-            <textarea type="text" name="" class="service-desc form-control" placeholder="Service-desc"></textarea>
-          </p>
-          <button type="submit" class="btn btn-dark">Submit</button>
-        </form>
-      </div>
-    </div>
+        </span>
+        <h3 class="card__name">
+            <input type="text" class="service-title form-control" id="cardTitle" placeholder="Service Title">
+        </h3>
+        <p class="card__description">
+            <textarea type="text" class="service-desc form-control" id="cardDesc" placeholder="Service Description"></textarea>
+        </p>
+        <button class="btn btn-dark" type="button" id="cardSubmitBtn">Submit</button>
+    </form>
+</div>
 
 
 
@@ -246,9 +245,10 @@ $service_disp = mysqli_query($conn , $service_sel);
           <div class="col-6 pe-2"><img
               src="https://images.unsplash.com/photo-1588200618450-3a5b1d3b9aa5?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               class="img-fluid"></div>
-          <div class="col-6"><img
-              src="https://images.pexels.com/photos/3568520/pexels-photo-3568520.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              class="img-fluid" alt=""></div>
+          <div class="col-6">
+          <img src="https://images.pexels.com/photos/3568520/pexels-photo-3568520.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              class="img-fluid" alt="">
+            </div>
         </div>
       </div>
     </div>
@@ -263,18 +263,23 @@ $service_disp = mysqli_query($conn , $service_sel);
       </div>
     </div>
     <div class="row mt-5">
-      <div class="parent ">
-        <div class="Service">
+      <div class="parent  " >
+      
+      <?php  
+      while($data = mysqli_fetch_assoc($team_disp)){
+      ?>
+         <div class="Service">
           <div class="content">
             <div class="round">
-              <img src="assets/img/avatar-1.png" class="img-fluid" alt="">
+              <img src="<?php echo $data['team_img']?>" class="img-fluid" alt="">
             </div>
-            <h3 class="text-center text-light pt-2">Hamza Siddiqui</h3>
-            <p class="text-center fs-6 text-light" style="text-align: justify;">
-              Elevate your online presence with our captivating and responsive web.</p>
+            <h3 class="text-center text-light pt-2"><?php  echo $data['team_name'] ?></h3>
+            <p class="text-center fs-6 text-light"><?php  echo $data['team_desc']?></p>
           </div>
         </div>
-        <div class="Service">
+      <?php
+      }?>
+        <!-- <div class="Service">
           <div class="content">
             <div class="round">
               <img src="assets/img/avatar-2.png" class="img-fluid" alt="">
@@ -293,18 +298,25 @@ $service_disp = mysqli_query($conn , $service_sel);
             <p class="text-center fs-6 text-light" >Creating engaging app designs that
               balance beauty </p>
           </div>
-        </div>
+        </div> -->
         <div class="Service">
-          <form action="">
-          <div class="content">
-            <div class="round">
-         <input type="file" class="form-control" placeholder="Team-img">
-            </div>
-            <h3 class="text-center text-light pt-2">  <input type="text" name="" class="service-title form-control" placeholder="Team-title" id=""></h3>
-            <p class="text-center fs-6 text-light" > <textarea type="text" name="" class="service-desc form-control" placeholder="Service-desc"></textarea></p>
-          </div>
-          </form>
+    <form id="teamForm" action="" enctype="multipart/form-data">
+        <div class="content">
+            <input type="file" class="form-control" name="team-img" id="teamImg" required>
+            <h3 class="text-center text-light pt-2">
+                <input type="text" class="service-title form-control" id="teamTitle" placeholder="Team Title" required>
+            </h3>
+            <p class="text-center fs-6 text-light">
+                <textarea class="service-desc form-control" id="teamDesc" placeholder="Team Description" required></textarea>
+            </p>
+            <button class="btn btn-dark m-auto d-flex " type="button" id="registerBtn">Register</button>
         </div>
+    </form>
+</div>
+
+      
+        
+        
       </div>
     </div>
   </section>
@@ -417,6 +429,7 @@ $service_disp = mysqli_query($conn , $service_sel);
               </div>
             </div>
           </div>
+          
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -612,9 +625,94 @@ $service_disp = mysqli_query($conn , $service_sel);
       $('.sidenav').sidenav();
     });
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   </script>
 
-</body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ $(document).ready(function () {
+            $("#registerBtn").click(function () {
+                var teamTitle = $("#teamTitle").val();
+                var teamDesc = $("#teamDesc").val();
+                var teamImg = $("#teamImg")[0].files[0];
+
+                // Basic validation
+                if (teamTitle === "" || teamDesc === "" || !teamImg) {
+                    alert("Please fill in all the required fields.");
+                    return;
+                }
+
+                var formData = new FormData();
+                formData.append('teamTitle', teamTitle);
+                formData.append('teamDesc', teamDesc);
+                formData.append('teamImg', teamImg);
+
+                $.ajax({
+                    type: "POST",
+                    url: "insert_team.php", // Replace with the actual PHP script URL
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $("#teamTitle").val("");
+                        $("#teamDesc").val("");
+                        $("#teamImg").val("");
+                        alert("Team data submitted successfully!");
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            });
+
+            $("#cardSubmitBtn").click(function () {
+                var cardTitle = $("#cardTitle").val();
+                var cardDesc = $("#cardDesc").val();
+
+                // Basic validation
+                if (cardTitle === "" || cardDesc === "") {
+                    alert("Please fill in all the required fields.");
+                    return;
+                }
+
+                var cardFormData = new FormData();
+                cardFormData.append('cardTitle', cardTitle);
+                cardFormData.append('cardDesc', cardDesc);
+
+                $.ajax({
+                    type: "POST",
+                    url: "insert_card_data.php", // Replace with the actual PHP script URL
+                    data: cardFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $("#cardTitle").val("");
+                        $("#cardDesc").val("");
+                        alert("Card data submitted successfully!");
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+
+</script>
 
 </body>
 

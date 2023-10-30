@@ -8,6 +8,9 @@ $service_sel = "SELECT * FROM `service`";
 $service_disp = mysqli_query($conn , $service_sel);
 
 
+$team_sel = "SELECT * FROM `team`";
+$team_disp = mysqli_query($conn , $team_sel);
+
 
 
 ?>
@@ -337,7 +340,21 @@ while($data = mysqli_fetch_assoc($service_disp)){
     </div>
     <div class="row mt-5">
       <div class="parent ">
-        <div class="Service">
+      <?php  
+      while($data = mysqli_fetch_assoc($team_disp)){
+      ?>
+         <div class="Service">
+          <div class="content">
+            <div class="round">
+              <img src="../admin_panel/<?php echo $data['team_img']?>" class="img-fluid" alt="">
+            </div>
+            <h3 class="text-center text-light pt-2"><?php  echo $data['team_name'] ?></h3>
+            <p class="text-center fs-6 text-light"><?php  echo $data['team_desc']?></p>
+          </div>
+        </div>
+      <?php
+      }?>
+        <!-- <div class="Service">
           <div class="content">
             <div class="round">
               <img src="assets/img/avatar-1.png" class="img-fluid" alt="">
@@ -366,7 +383,7 @@ while($data = mysqli_fetch_assoc($service_disp)){
             <p class="text-center fs-6 text-light" style="text-align: justify;">Creating engaging app designs that
               balance beauty </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

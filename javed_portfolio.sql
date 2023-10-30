@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 10:16 PM
+-- Generation Time: Oct 30, 2023 at 04:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,6 +44,28 @@ INSERT INTO `service` (`service_id`, `service_title`, `service_desc`) VALUES
 (10, 'Nature and Photography', 'Experience breathtaking landscapes through our stunning nature and landscape photography\".'),
 (11, 'Food Photography', 'Satisfy your visual appetite with mouthwatering food photography, perfect for restaurants and food enthusiasts.');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team`
+--
+
+CREATE TABLE `team` (
+  `team_id` int(11) NOT NULL,
+  `team_name` varchar(255) NOT NULL,
+  `team_desc` varchar(255) NOT NULL,
+  `team_img` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `team`
+--
+
+INSERT INTO `team` (`team_id`, `team_name`, `team_desc`, `team_img`) VALUES
+(38, 'Hamza Siddiqui', 'Elevate your online presence with our captivating and responsive web.', 'uploads/avatar-1.png'),
+(39, 'Kashan', 'Elevate your online presence with my expert web development services,', 'uploads/avatar-2.png'),
+(40, 'Abubaker Siddiqui', 'Creating engaging app designs that balance beauty', 'uploads/avatar-4.png');
+
 --
 -- Indexes for dumped tables
 --
@@ -56,6 +78,12 @@ ALTER TABLE `service`
   ADD UNIQUE KEY `service_title` (`service_title`);
 
 --
+-- Indexes for table `team`
+--
+ALTER TABLE `team`
+  ADD PRIMARY KEY (`team_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -63,7 +91,13 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `team`
+--
+ALTER TABLE `team`
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
