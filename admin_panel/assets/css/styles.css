@@ -730,7 +730,12 @@ margin: auto;
   justify-content: center;
 
 }
-
+.edit{
+  text-align-last: justify;
+  position: absolute;
+  top: 6%;
+  width: 83%;
+}
 /* team start */
 
 

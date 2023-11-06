@@ -27,16 +27,16 @@ $team_disp = mysqli_query($conn , $team_sel);
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
 
   <!--=============== SWIPER CSS ===============-->
-  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--=============== CSS ===============-->
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/stylesfirst.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -161,51 +161,47 @@ $team_disp = mysqli_query($conn , $team_sel);
     </div>
 
 
-    <div class="parent ">
+    <div class="parent" id="data-container">
+      <!-- Existing card_data and form -->
+
+    </div>
+    <div class="parent">
+      <div class="card__data " style="margin-top:-3rem">
+        <form id="serviceform" action="">
+          <span class="material-symbols-outlined fs-1">
+            camera
+          </span>
+          <h3 class="card__name">
+            <input type="text" class="service-title form-control" id="serviceTitle" placeholder="Service Title">
+          </h3>
+          <p class="card__description">
+            <textarea class="service-desc form-control" id="serviceDesc" placeholder="Service Description"></textarea>
+          </p>
+          <button class="btn btn-dark" type="button" id="serviceBtn">Submit</button>
+          <span id="servicemsg"></span>
+        </form>
+      </div>
 
 
-      <?php  
-      while($data = mysqli_fetch_assoc($service_disp)){
-      ?>
+    </div>
 
 
 
-      <div class="card__data">
+   <!-- Popup for updating input fields -->
+   <div  id="updatePopup" >
+    <div class="center">
+    <div class="square">
+        <h4>Update Data</h4>
         <span class="material-symbols-outlined fs-1">
           camera
         </span>
-        <h3 class="card__name">
-          <?PHP  echo $data['service_title'] ;?>
-        </h3>
-        <p class="card__description">
-          <?PHP  echo $data['service_desc']; ?>
-        </p>
-
-
+        <input type="text" id="updateTitle"  class="form-control service-title" placeholder="New Title">
+        <textarea id="updateDesc"  class="form-control service-desc mt-3" placeholder="New Description"></textarea>
+        <button id="updateConfirm" data-id="" class="btn btn-success mt-3 ">Update</button>
+        <button id="updateCancel" class="btn btn-danger mt-3">Cancel</button>
+        </div>
+        </div>
       </div>
-
-      <?PHP
-     }?>
-
-<div class="card__data">
-    <form id="cardDataForm" action="">
-        <span class="material-symbols-outlined fs-1">
-            camera
-        </span>
-        <h3 class="card__name">
-            <input type="text" class="service-title form-control" id="cardTitle" placeholder="Service Title">
-        </h3>
-        <p class="card__description">
-            <textarea type="text" class="service-desc form-control" id="cardDesc" placeholder="Service Description"></textarea>
-        </p>
-        <button class="btn btn-dark" type="button" id="cardSubmitBtn">Submit</button>
-    </form>
-</div>
-
-
-
-
-
 
 
   </section>
@@ -246,9 +242,10 @@ $team_disp = mysqli_query($conn , $team_sel);
               src="https://images.unsplash.com/photo-1588200618450-3a5b1d3b9aa5?auto=format&fit=crop&q=80&w=1740&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               class="img-fluid"></div>
           <div class="col-6">
-          <img src="https://images.pexels.com/photos/3568520/pexels-photo-3568520.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            <img
+              src="https://images.pexels.com/photos/3568520/pexels-photo-3568520.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               class="img-fluid" alt="">
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -263,60 +260,52 @@ $team_disp = mysqli_query($conn , $team_sel);
       </div>
     </div>
     <div class="row mt-5">
-      <div class="parent  " >
-      
-      <?php  
+      <div class="parent  ">
+
+        <?php  
       while($data = mysqli_fetch_assoc($team_disp)){
       ?>
-         <div class="Service">
+        <div class="Service">
           <div class="content">
+            <div class="edit">
+              <span class="fs-3 text-start text-danger fw-bold "><i class="bi bi-pencil-square"></i></span>
+
+              <span class="fs-3 text-end text-danger fw-bold "><i class="bi bi-x-square"></i></span>
+            </div>
             <div class="round">
+
               <img src="<?php echo $data['team_img']?>" class="img-fluid" alt="">
             </div>
-            <h3 class="text-center text-light pt-2"><?php  echo $data['team_name'] ?></h3>
-            <p class="text-center fs-6 text-light"><?php  echo $data['team_desc']?></p>
-          </div>
-        </div>
-      <?php
-      }?>
-        <!-- <div class="Service">
-          <div class="content">
-            <div class="round">
-              <img src="assets/img/avatar-2.png" class="img-fluid" alt="">
-            </div>
-            <h3 class="text-center text-light pt-2">Kashan</h3>
-            <p class="text-center fs-6 text-light">Elevate your online presence with my
-              expert web development services,</p>
-          </div>
-        </div>
-        <div class="Service">
-          <div class="content">
-            <div class="round">
-              <img src="assets/img/avatar-3.png" class="img-fluid" alt="">
-            </div>
-            <h3 class="text-center text-light pt-2">Abubaker Siddiqui</h3>
-            <p class="text-center fs-6 text-light" >Creating engaging app designs that
-              balance beauty </p>
-          </div>
-        </div> -->
-        <div class="Service">
-    <form id="teamForm" action="" enctype="multipart/form-data">
-        <div class="content">
-            <input type="file" class="form-control" name="team-img" id="teamImg" required>
             <h3 class="text-center text-light pt-2">
-                <input type="text" class="service-title form-control" id="teamTitle" placeholder="Team Title" required>
+              <?php  echo $data['team_name'] ?>
             </h3>
             <p class="text-center fs-6 text-light">
-                <textarea class="service-desc form-control" id="teamDesc" placeholder="Team Description" required></textarea>
+              <?php  echo $data['team_desc']?>
             </p>
-            <button class="btn btn-dark m-auto d-flex " type="button" id="registerBtn">Register</button>
+          </div>
         </div>
-    </form>
-</div>
+        <?php
+      }?>
 
-      
-        
-        
+        <div class="Service">
+          <form id="teamForm" action="" enctype="multipart/form-data">
+            <div class="content">
+              <input type="file" class="form-control" name="team-img" id="teamImg" required>
+              <h3 class="text-center text-light pt-2">
+                <input type="text" class="service-title form-control" id="teamTitle" placeholder="Team Title" required>
+              </h3>
+              <p class="text-center fs-6 text-light">
+                <textarea class="service-desc form-control" id="teamDesc" placeholder="Team Description"
+                  required></textarea>
+              </p>
+              <button class="btn btn-dark m-auto d-flex " type="button" id="registerBtn">Register</button>
+            </div>
+          </form>
+        </div>
+
+
+
+
       </div>
     </div>
   </section>
@@ -429,7 +418,7 @@ $team_disp = mysqli_query($conn , $team_sel);
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -546,10 +535,7 @@ $team_disp = mysqli_query($conn , $team_sel);
 
 
 
-  <script src="assets/js/swiper-bundle.min.js"></script>
 
-  <!--=============== MAIN JS ===============-->
-  <script src="assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12">
 
 
@@ -625,95 +611,202 @@ $team_disp = mysqli_query($conn , $team_sel);
       $('.sidenav').sidenav();
     });
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
- $(document).ready(function () {
-            $("#registerBtn").click(function () {
-                var teamTitle = $("#teamTitle").val();
-                var teamDesc = $("#teamDesc").val();
-                var teamImg = $("#teamImg")[0].files[0];
 
-                // Basic validation
-                if (teamTitle === "" || teamDesc === "" || !teamImg) {
-                    alert("Please fill in all the required fields.");
-                    return;
+  <!-- <script>
+$(document).ready(function () {
+
+    function servicedisplay() {
+        $.ajax({
+            url: 'get_data.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Clear the existing data
+                $('#data-container').empty();
+
+                // Loop through the data and insert it into the HTML
+                for (var i = 0; i < data.length; i++) {
+                    var card = `
+                    <div class="card__data">
+                        <div class="col" style="text-align-last: justify;">
+                            <button id="Delete">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <span class="material-symbols-outlined fs-1">
+                                camera
+                            </span>
+                            <button id="Delete">
+                              <i class="bi bi-x-square"></i>
+                            </button>
+                        </div>
+                        <h3 class="card__name">${data[i].service_title}</h3>
+                        <p class="card__description">${data[i].service_desc}</p>
+                    </div>`;
+
+                    $('#data-container').append(card);
                 }
+            }
+        });
+    }
 
-                var formData = new FormData();
-                formData.append('teamTitle', teamTitle);
-                formData.append('teamDesc', teamDesc);
-                formData.append('teamImg', teamImg);
+    $("#serviceBtn").click(function (e) {
+        e.preventDefault();
 
-                $.ajax({
-                    type: "POST",
-                    url: "insert_team.php", // Replace with the actual PHP script URL
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        $("#teamTitle").val("");
-                        $("#teamDesc").val("");
-                        $("#teamImg").val("");
-                        alert("Team data submitted successfully!");
-                        console.log(response);
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            });
+        let ct = $("#serviceTitle").val();
+        let cd = $("#serviceDesc").val();
 
-            $("#cardSubmitBtn").click(function () {
-                var cardTitle = $("#cardTitle").val();
-                var cardDesc = $("#cardDesc").val();
+        let servicedata = { servicetitle: ct, servicedesc: cd };
 
-                // Basic validation
-                if (cardTitle === "" || cardDesc === "") {
-                    alert("Please fill in all the required fields.");
-                    return;
-                }
+        $.ajax({
+            url: "insert.php",
+            method: "POST",
+            data: JSON.stringify(servicedata), // Send the data object directly
+            success: function (data) {
+                // Display a success message or handle any other actions
+                msg = data
+            $("#servicemsg").html(msg);
+            $("#serviceform")[0].reset();
+                // Clear the input fields
+                $("#serviceTitle").val("");
+                $("#serviceDesc").val("");
 
-                var cardFormData = new FormData();
-                cardFormData.append('cardTitle', cardTitle);
-                cardFormData.append('cardDesc', cardDesc);
+                // Call servicedisplay to refresh the data after inserting
+                servicedisplay();
+            }
+        });
+    });
 
-                $.ajax({
-                    type: "POST",
-                    url: "insert_card_data.php", // Replace with the actual PHP script URL
-                    data: cardFormData,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        $("#cardTitle").val("");
-                        $("#cardDesc").val("");
-                        alert("Card data submitted successfully!");
-                        console.log(response);
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            });
+    // Call servicedisplay to display data when the page loads
+    servicedisplay();
+});
+</script> -->
+
+  <script>
+    $(document).ready(function () {
+      function servicedisplay() {
+        $.ajax({
+          url: 'get_data.php',
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+
+            $('#data-container').empty();
+
+            for (var i = 0; i < data.length; i++) {
+              var card = `
+              <div class="card__data">
+                  <div class="col" style="text-align-last: justify;">
+                      
+                          <i class="bi bi-x-square fs-3 fw-bold text-danger delete-button"  data-id="${data[i].service_id}"></i>
+                      
+                      <span class="material-symbols-outlined fs-1">
+                          camera
+                      </span>
+                      
+                          <i class="bi bi-pencil-square fs-3 fw-bold  text-warning update-button" data-id="${data[i].service_id}"></i>
+                     
+                     
+                  </div>
+                  <h3 class="card__name">${data[i].service_title}</h3>
+                  <p class="card__description">${data[i].service_desc}</p>
+              </div>`;
+
+              $('#data-container').append(card);
+
+            }
+          }
+        });
+      }
+
+      $("#serviceBtn").click(function (e) {
+        e.preventDefault();
+
+        let ct = $("#serviceTitle").val();
+        let cd = $("#serviceDesc").val();
+
+        let servicedata = { servicetitle: ct, servicedesc: cd };
+
+        $.ajax({
+          url: "insert.php",
+          method: "POST",
+          data: JSON.stringify(servicedata) ,
+          success: function (data) {
+            msg = data;
+            $("#servicemsg").html(msg);
+            $("#serviceform")[0].reset();
+            servicedisplay();
+          }
+        });
+      });
+
+      // Delete operation with confirmation prompt
+      $('#data-container').on('click', '.delete-button', function () {
+        var id = $(this).data('id');
+
+        if (confirm("Are you sure you want to delete this record?")) {
+          $.ajax({
+            url: 'delete.php',
+            method: 'POST',
+            data: { id: id },
+            success: function (data) {
+              servicedisplay();
+            }
+          });
+        }
+      });
+
+      // Update operation with popup
+      $('#data-container').on('click', '.update-button', function () {
+        var id = $(this).data('id');
+
+        // Display the update popup
+        $('#updatePopup').css('display', 'block');
+        $('#updateConfirm').attr('data-id', id);
+
+        $('#updateConfirm').click(function () {
+          var newTitle = $('#updateTitle').val();
+          var newDescription = $('#updateDesc').val();
+
+          $.ajax({
+            url: 'update.php',
+            method: 'POST',
+            data: {
+              id: id,
+              servicetitle: newTitle,
+              servicedesc: newDescription
+            },
+            success: function (data) {
+              $('#updatePopup').css('display', 'none');
+              servicedisplay();
+            }
+          });
         });
 
-</script>
+        $('#updateCancel').click(function () {
+          $('#updatePopup').css('display', 'none');
+        });
+      });
 
+      // Call servicedisplay to display data when the page loads
+      servicedisplay();
+    });
+  </script>
 </body>
 
 </html>
