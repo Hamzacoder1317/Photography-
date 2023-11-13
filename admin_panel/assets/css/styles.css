@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&display=swap");
 
 
-
 .row{
   --bs-gutter-x:0;
 }
@@ -26,6 +25,18 @@ a {
 
 
 
+#updatePopupteam {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ width: 100%;
+ height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
 
 
 
@@ -71,40 +82,7 @@ a {
   font-weight: 600;
 }
 
-/* Swiper class */
-.swiper-button-prev:after,
-.swiper-button-next:after {
-  content: "";
-}
 
-.swiper-button-prev,
-.swiper-button-next {
-  width: initial;
-  height: initial;
-  font-size: 3rem;
-  color: #e77e06;
-  display: none;
-}
-
-.swiper-button-prev {
-  left: 0;
-}
-
-.swiper-button-next {
-  right: 0;
-}
-
-.swiper-pagination-bullet {
-  background-color:#e77e06;
-  opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: #e77e06;
-}
-
-/*=============== BREAKPOINTS ===============*/
-/* For small devices */
 @media screen and (max-width: 320px) {
   .card__data {
     padding: 1rem;

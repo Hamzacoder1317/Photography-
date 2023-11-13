@@ -1,17 +1,4 @@
-<?php
 
-require ("shared/config.php");
-
-
-
-$service_sel = "SELECT * FROM `service`";
-$service_disp = mysqli_query($conn , $service_sel);
-
-
-$team_sel = "SELECT * FROM `team`";
-$team_disp = mysqli_query($conn , $team_sel);
-
-?>
 
 
 <!DOCTYPE html>
@@ -30,13 +17,15 @@ $team_disp = mysqli_query($conn , $team_sel);
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--=============== CSS ===============-->
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/stylesfirst.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/stylesfirst.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/stylessecond.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -187,21 +176,21 @@ $team_disp = mysqli_query($conn , $team_sel);
 
 
 
-   <!-- Popup for updating input fields -->
-   <div  id="updatePopup" >
-    <div class="center">
-    <div class="square">
-        <h4>Update Data</h4>
-        <span class="material-symbols-outlined fs-1">
-          camera
-        </span>
-        <input type="text" id="updateTitle"  class="form-control service-title" placeholder="New Title">
-        <textarea id="updateDesc"  class="form-control service-desc mt-3" placeholder="New Description"></textarea>
-        <button id="updateConfirm" data-id="" class="btn btn-success mt-3 ">Update</button>
-        <button id="updateCancel" class="btn btn-danger mt-3">Cancel</button>
-        </div>
+    <!-- Popup for updating input fields -->
+    <div id="updatePopup">
+      <div class="center">
+        <div class="square">
+          <h4>Update Data</h4>
+          <span class="material-symbols-outlined fs-1">
+            camera
+          </span>
+          <input type="text" id="updateTitle" class="form-control service-title" placeholder="New Title">
+          <textarea id="updateDesc" class="form-control service-desc mt-3" placeholder="New Description"></textarea>
+          <button id="updateConfirm" data-id="" class="btn btn-success mt-3 ">Update</button>
+          <button id="updateCancel" class="btn btn-danger mt-3">Cancel</button>
         </div>
       </div>
+    </div>
 
 
   </section>
@@ -260,33 +249,12 @@ $team_disp = mysqli_query($conn , $team_sel);
       </div>
     </div>
     <div class="row mt-5">
-      <div class="parent  ">
+      <div class="parent " id="team-container">
 
-        <?php  
-      while($data = mysqli_fetch_assoc($team_disp)){
-      ?>
-        <div class="Service">
-          <div class="content">
-            <div class="edit">
-              <span class="fs-3 text-start text-danger fw-bold "><i class="bi bi-pencil-square"></i></span>
+     
 
-              <span class="fs-3 text-end text-danger fw-bold "><i class="bi bi-x-square"></i></span>
-            </div>
-            <div class="round">
-
-              <img src="<?php echo $data['team_img']?>" class="img-fluid" alt="">
-            </div>
-            <h3 class="text-center text-light pt-2">
-              <?php  echo $data['team_name'] ?>
-            </h3>
-            <p class="text-center fs-6 text-light">
-              <?php  echo $data['team_desc']?>
-            </p>
-          </div>
-        </div>
-        <?php
-      }?>
-
+      </div>
+      <div class="parent">
         <div class="Service">
           <form id="teamForm" action="" enctype="multipart/form-data">
             <div class="content">
@@ -298,16 +266,31 @@ $team_disp = mysqli_query($conn , $team_sel);
                 <textarea class="service-desc form-control" id="teamDesc" placeholder="Team Description"
                   required></textarea>
               </p>
-              <button class="btn btn-dark m-auto d-flex " type="button" id="registerBtn">Register</button>
+              <button class="btn btn-dark m-auto d-flex " type="button" id="teamBtn">Register</button>
             </div>
           </form>
         </div>
+      </div>
 
 
-
-
+   <!-- Popup for updating input fields -->
+   <div id="updatePopupteam" >
+      <div class="center">
+        <div class="square">
+          <h4>Update Data</h4>
+          <input type="file" class="form-control" name="team-img" id="teamImg" required>
+          <input type="text" id="updateTitle" class="form-control service-title" placeholder="New Title">
+          <textarea id="updateDesc" class="form-control service-desc mt-3" placeholder="New Description"></textarea>
+          <button id="updateConfirmteam" data-id="" class="btn btn-success mt-3 ">Update</button>
+          <button id="updateCancelteam" class="btn btn-danger mt-3">Cancel</button>
+        </div>
       </div>
     </div>
+
+    </div>
+
+
+ 
   </section>
 
 
@@ -584,20 +567,6 @@ $team_disp = mysqli_query($conn , $team_sel);
 
     window.addEventListener('scroll', updateProgressBar);
 
-    const showButton = document.getElementById('showButton');
-
-    window.addEventListener('scroll', () => {
-      const scrollPercentage = (document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)) * 100;
-
-      if (scrollPercentage >= 40 && scrollPercentage <= 100) {
-        showButton.style.display = 'block';
-      } else {
-        showButton.style.display = 'none';
-      }
-    });
-
-
-
 
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -628,80 +597,13 @@ $team_disp = mysqli_query($conn , $team_sel);
   </script>
 
 
-  <!-- <script>
-$(document).ready(function () {
-
-    function servicedisplay() {
-        $.ajax({
-            url: 'get_data.php',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                // Clear the existing data
-                $('#data-container').empty();
-
-                // Loop through the data and insert it into the HTML
-                for (var i = 0; i < data.length; i++) {
-                    var card = `
-                    <div class="card__data">
-                        <div class="col" style="text-align-last: justify;">
-                            <button id="Delete">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <span class="material-symbols-outlined fs-1">
-                                camera
-                            </span>
-                            <button id="Delete">
-                              <i class="bi bi-x-square"></i>
-                            </button>
-                        </div>
-                        <h3 class="card__name">${data[i].service_title}</h3>
-                        <p class="card__description">${data[i].service_desc}</p>
-                    </div>`;
-
-                    $('#data-container').append(card);
-                }
-            }
-        });
-    }
-
-    $("#serviceBtn").click(function (e) {
-        e.preventDefault();
-
-        let ct = $("#serviceTitle").val();
-        let cd = $("#serviceDesc").val();
-
-        let servicedata = { servicetitle: ct, servicedesc: cd };
-
-        $.ajax({
-            url: "insert.php",
-            method: "POST",
-            data: JSON.stringify(servicedata), // Send the data object directly
-            success: function (data) {
-                // Display a success message or handle any other actions
-                msg = data
-            $("#servicemsg").html(msg);
-            $("#serviceform")[0].reset();
-                // Clear the input fields
-                $("#serviceTitle").val("");
-                $("#serviceDesc").val("");
-
-                // Call servicedisplay to refresh the data after inserting
-                servicedisplay();
-            }
-        });
-    });
-
-    // Call servicedisplay to display data when the page loads
-    servicedisplay();
-});
-</script> -->
+ 
 
   <script>
     $(document).ready(function () {
       function servicedisplay() {
         $.ajax({
-          url: 'get_data.php',
+          url: 'service/get_data.php',
           type: 'GET',
           dataType: 'json',
           success: function (data) {
@@ -743,9 +645,9 @@ $(document).ready(function () {
         let servicedata = { servicetitle: ct, servicedesc: cd };
 
         $.ajax({
-          url: "insert.php",
+          url: "service/insert.php",
           method: "POST",
-          data: JSON.stringify(servicedata) ,
+          data: JSON.stringify(servicedata),
           success: function (data) {
             msg = data;
             $("#servicemsg").html(msg);
@@ -761,7 +663,7 @@ $(document).ready(function () {
 
         if (confirm("Are you sure you want to delete this record?")) {
           $.ajax({
-            url: 'delete.php',
+            url: 'service/delete.php',
             method: 'POST',
             data: { id: id },
             success: function (data) {
@@ -784,7 +686,7 @@ $(document).ready(function () {
           var newDescription = $('#updateDesc').val();
 
           $.ajax({
-            url: 'update.php',
+            url: 'service/update.php',
             method: 'POST',
             data: {
               id: id,
@@ -805,7 +707,130 @@ $(document).ready(function () {
 
       // Call servicedisplay to display data when the page loads
       servicedisplay();
+
+
+
+
+
+
+
+
+
+
+
+      
+        function teamDisplay() {
+      $.ajax({
+        url: 'team/get_data.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          // Corrected element id: team-container
+          $('#team-container').empty();
+
+          for (var i = 0; i < data.length; i++) {
+            var teamMember = `
+              <div class="Service">
+                <div class="content">
+                  <div class="edit">
+                    <span class="fs-3 text-start text-danger fw-bold update" data-id="${data[i].team_id}"><i class="bi bi-pencil-square"></i></span>
+                    <span class="fs-3 text-end text-danger fw-bold delete" data-id="${data[i].team_id}"><i class="bi bi-x-square"></i></span>
+                  </div>
+                  <div class="round">
+                    <img src="upload/${data[i].team_img}" class="img-fluid" alt="">
+                  </div>
+                  <h3 class="text-center text-light pt-2">${data[i].team_name}</h3>
+                  <p class="text-center fs-6 text-light">${data[i].team_desc}</p>
+                </div>
+              </div>`;
+
+            // Corrected element id: team-container
+            $('#team-container').append(teamMember);
+          }
+        }
+      });
+    }
+
+      $("#teamBtn").click(function (e) {
+        e.preventDefault();
+        let teamTitle = $("#teamTitle").val();
+        let teamDesc = $("#teamDesc").val();
+        let teamImg = $("#teamImg")[0].files[0];
+
+        let formData = new FormData();
+        formData.append('team-title', teamTitle);
+        formData.append('team-desc', teamDesc);
+        formData.append('team-img', teamImg);
+
+        $.ajax({
+          url: "team/insert.php",
+          method: "POST",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            $("#teamTitle").val('');
+            $("#teamDesc").val('');
+            $("#teamImg").val('');
+            teamDisplay();
+          }
+        });
+      });
+
+      $('#team-container').on('click', '.delete', function () {
+        var id = $(this).data('id');
+
+        if (confirm("Are you sure you want to delete this team member?")) {
+          $.ajax({
+            url: 'team/delete.php',
+            method: 'POST',
+            data: { id: id },
+            success: function (data) {
+              teamDisplay();
+            }
+          });
+        }
+      });
+
+      $('#team-container').on('click', '.update', function () {
+        var id = $(this).data('id');
+
+        $('#updatePopupteam').css('display', 'block');
+        $('#updateConfirmteam').attr('data-id', id);
+
+        $('#updateConfirmteam').click(function () {
+          var newTitle = $('#updateTitle').val();
+          var newDescription = $('#updateDesc').val();
+          var newImg = $('#teamImg').val();
+          
+          $.ajax({
+            url: 'service/update.php',
+            method: 'POST',
+            data: {
+              id: id,
+              servicetitle: newTitle,
+              servicedesc: newDescription,
+              serviceimg: newImg
+            },
+            success: function (data) {
+              $('#updatePopupteam').css('display', 'none');
+              servicedisplay();
+            }
+          });
+        });
+
+        $('#updateCancelteam').click(function () {
+          $('#updatePopupteam').css('display', 'none');
+        });
+      });
+
+      teamDisplay();
     });
+
+
+
+
+
   </script>
 </body>
 

@@ -346,7 +346,7 @@ while($data = mysqli_fetch_assoc($service_disp)){
          <div class="Service">
           <div class="content">
             <div class="round">
-              <img src="../admin_panel/<?php echo $data['team_img']?>" class="img-fluid" alt="">
+              <img src="../admin_panel<?php echo $data['team_img']?>" class="img-fluid" alt="">
             </div>
             <h3 class="text-center text-light pt-2"><?php  echo $data['team_name'] ?></h3>
             <p class="text-center fs-6 text-light"><?php  echo $data['team_desc']?></p>
