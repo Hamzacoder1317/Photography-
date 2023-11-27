@@ -1,4 +1,7 @@
- #updatePopup{
+
+  
+  
+  #updatePopupteam{
     display: none;
     position: fixed;
     top: 50%;
@@ -11,7 +14,7 @@
   
 
   }
-  #updatePopupteam {
+  #updatePopup{
     display: none;
     position: fixed;
     top: 50%;
@@ -21,8 +24,6 @@
    height: 100%;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.5);
-  
-
   }
   #updatePopup h2 {
     margin-top: 0;
@@ -48,3 +49,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .icon{
+    width: 100px;
+    
+  }
+  /* .update-button-offer{
+    position: absolute;
+    padding: 7px 15px;
+  } */

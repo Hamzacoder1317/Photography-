@@ -1,5 +1,4 @@
-
-  #updatePopupteam {
+#updatePopupoffer{
     display: none;
     position: fixed;
     top: 50%;
@@ -9,5 +8,4 @@
    height: 100%;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.5);
-
   }
