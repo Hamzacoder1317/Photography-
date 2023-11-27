@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2023 at 04:20 PM
+-- Generation Time: Nov 27, 2023 at 08:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `javed_portfolio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offer`
+--
+
+CREATE TABLE `offer` (
+  `offer_id` int(11) NOT NULL,
+  `offer_%` varchar(255) NOT NULL,
+  `offer_day` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `offer`
+--
+
+INSERT INTO `offer` (`offer_id`, `offer_%`, `offer_day`) VALUES
+(1, '45', 'monday');
 
 -- --------------------------------------------------------
 
@@ -42,7 +61,7 @@ INSERT INTO `service` (`service_id`, `service_title`, `service_desc`) VALUES
 (8, 'Wedding Photography', 'Capture the magic of your special day with our professional wedding photography services, ensuring your memories last a lifetime.'),
 (9, 'Event Photography', 'Preserve the essence of your events with our expert photography, capturing the moments that matter most.'),
 (10, 'Nature and Photography', 'Experience breathtaking landscapes through our stunning nature and landscape photography\".'),
-(11, 'Food Photography', 'Satisfy your visual appetite with mouthwatering food photography, perfect for restaurants and food enthusiasts.');
+(94, 'Food Photography', 'Preserve the essence of your events with our expert photography, capturing the moments that matter most.');
 
 -- --------------------------------------------------------
 
@@ -62,13 +81,18 @@ CREATE TABLE `team` (
 --
 
 INSERT INTO `team` (`team_id`, `team_name`, `team_desc`, `team_img`) VALUES
-(38, 'Hamza Siddiqui', 'Elevate your online presence with our captivating and responsive web.', 'uploads/avatar-1.png'),
-(39, 'Kashan', 'Elevate your online presence with my expert web development services,', 'uploads/avatar-2.png'),
-(40, 'Abubaker Siddiqui', 'Creating engaging app designs that balance beauty', 'uploads/avatar-4.png');
+(61, 'HAMZA SIDDIQUI', 'Elevate your online presence with our captivating and responsive web.', '../uploads/avatar-1.png'),
+(62, 'Abubaker Siddiqui', 'Creating engaging app designs that balance beauty', '../uploads/avatar-2.png');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `offer`
+--
+ALTER TABLE `offer`
+  ADD PRIMARY KEY (`offer_id`);
 
 --
 -- Indexes for table `service`
@@ -88,16 +112,22 @@ ALTER TABLE `team`
 --
 
 --
+-- AUTO_INCREMENT for table `offer`
+--
+ALTER TABLE `offer`
+  MODIFY `offer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
